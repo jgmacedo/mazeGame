@@ -6,7 +6,7 @@
 
 #define SNAKE_ARRAY_SIZE 310
 
-// Linux Libraries
+/*Linux Libraries*/
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
