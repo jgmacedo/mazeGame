@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "map20.c"
+#include "map30.c"
 #include "funcoes_auxiliares.h"
 
-#define MAP_SIZE 20
+#define MAP_SIZE 30
 #define UNKNOWN_AREA '.'
 #define PLAYER_CHAR 'P'
 #define WALL_CHAR '#'
@@ -85,15 +85,21 @@ int main() {
             default:
                 printf("Direção inválida! Tente novamente.\n");
                 continue;
-        }
+            }
+            if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE &&
+                ((selectedMap == 1 && map1[newY][newX] != WALL_CHAR) ||
+                 (selectedMap == 2 && map2[newY][newX] != WALL_CHAR)))
+            {
+                playerX = newX;
+                playerY = newY;
+            }
+            CLEAR_SCREEN;
 
-        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE && map1[newY][newX] != WALL_CHAR) {
-            playerX = newX;
-            playerY = newY;
+        if (selectedMap == 1){
+                generateHiddenMap(map1, hiddenMap, playerX, playerY); /* Usando map1 */
+        } else {
+            generateHiddenMap(map2, hiddenMap, playerX, playerY);  /* Usando map2 */
         }
-        CLEAR_SCREEN;
-
-        generateHiddenMap(map1, hiddenMap, playerX, playerY);
         printMap(hiddenMap, playerX, playerY);
     }
 
