@@ -1,34 +1,14 @@
-struct player
+/* Instruc ̧ ̃oes para compilar:
+* gcc -c teste.c -ansi
+* gcc -o programa teste.o funcoes_auxiliares.o -ansi
+*/
+#include <stdio.h>
+#include "funcoes_auxiliares.h"
+int main()
 {
-    char pos_x;
-    char pos_y;
-    char old_x;
-    char old_y;
-};
-
-void move_player(struct player *p, char direction)
-{
-    p->old_x = p->pos_x;
-    p->old_y = p->pos_y;
-    switch (direction)
-    {
-    case 'w':
-        p->pos_x--;
-        break;
-    case 's':
-        p->pos_x++;
-        break;
-    case 'a':
-        p->pos_y--;
-        break;
-    case 'd':
-        p->pos_y++;
-        break;
-    }
+int i;
+for (i = 0; i < 10; i++) {
+printf("%d\n", le_tecla());
 }
-
-void map_update(char map[5][5], struct player *p)
-{
-    map[p->old_x][p->old_y] = " ";
-    map[p->pos_x][p->pos_y] = "p";
+return 0;
 }
