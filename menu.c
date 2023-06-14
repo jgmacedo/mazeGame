@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* imports */
+#include "novoPersonagem.c"
+
 int main()
 {
     int opcoesIniciais;
@@ -24,7 +27,8 @@ int main()
         {
         case 1:
             personagemCriado = 1;
-            printf("chamar a funcao criacao de personagem\n");
+            system("clear");
+            novoPersonagem();
             break;
         case 2:
             if (personagemCriado == 1)
