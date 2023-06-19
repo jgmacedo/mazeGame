@@ -152,7 +152,7 @@ void novoPersonagem()
                 personagem.profissao = 2;
                 printf("Uau um mago? Use seus feitiços sem restrições!\n");
                 break;
-            /* fazer usuario voltar caso insira alguma das opcoes diferentes*/
+            /* fazer usuario voltar caso insira alguma das opcoes diferentes */
             default:
                 printf("\n* Opção Inválida! Tente Novamente *\n");
                 continue;
@@ -162,7 +162,7 @@ void novoPersonagem()
 
     /* PORTE DO PERSONAGEM:
              if e else para fazer a restricao caso a raca do personagem
-            for Anao, ele nao podera escolher o porte Grande*/
+            for Anao, ele nao podera escolher o porte Grande */
     if (personagem.raca != 2)
     {
         while (personagem.porte != 1 && personagem.porte != 2 && personagem.porte != 3)
