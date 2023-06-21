@@ -76,7 +76,7 @@ void generateHiddenMap(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MA
 
 
 
-int main() {
+void mazeGame20() {
     srand(time(NULL));
     int destreza = 10, inteligencia = 10;
     char hiddenMap[MAP_SIZE][MAP_SIZE];
@@ -196,7 +196,5 @@ int main() {
         }
         printMap(hiddenMap, playerX, playerY, traps, trapCount);
     }
-
-    return 0;
 }
 
