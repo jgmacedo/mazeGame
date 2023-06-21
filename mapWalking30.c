@@ -10,7 +10,7 @@
 #define WALL_CHAR '#'
 #define CLEAR_SCREEN system("clear")
 
-void generateHiddenMap(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY) {
+void generateHiddenMap3030(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY) {
     int i, j;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
@@ -23,7 +23,7 @@ void generateHiddenMap(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MA
     }
 }
 
-void printMap(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY) {
+void printMap30(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY) {
     int i,j;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
@@ -39,7 +39,7 @@ void printMap(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY) {
     }
 }
 
-int main() {
+void mazeGame30() {
     srand(time(NULL));
 
     char hiddenMap[MAP_SIZE][MAP_SIZE];
@@ -50,13 +50,13 @@ int main() {
     
     if (rand() % 2 == 0) {
         selectedMap = 1;
-        generateHiddenMap(map1, hiddenMap, playerX, playerY);
+        generateHiddenMap30(map1, hiddenMap, playerX, playerY);
     } else {
         selectedMap = 2;
-        generateHiddenMap(map2, hiddenMap, playerX, playerY);
+        generateHiddenMap30(map2, hiddenMap, playerX, playerY);
     }
 
-    printMap(hiddenMap, playerX, playerY);
+    printMap30(hiddenMap, playerX, playerY);
     
         while (1) {
         printf("Digite uma direção (W, A, S, D) ou CTRL + C para sair: \n");
@@ -96,12 +96,10 @@ int main() {
             CLEAR_SCREEN;
 
         if (selectedMap == 1){
-                generateHiddenMap(map1, hiddenMap, playerX, playerY); /* Usando map1 */
+            generateHiddenMap30(map1, hiddenMap, playerX, playerY); /* Usando map1 */
         } else {
-            generateHiddenMap(map2, hiddenMap, playerX, playerY);  /* Usando map2 */
+            generateHiddenMap30(map2, hiddenMap, playerX, playerY);  /* Usando map2 */
         }
-        printMap(hiddenMap, playerX, playerY);
+        printMap30(hiddenMap, playerX, playerY);
     }
-
-    return 0;
 }

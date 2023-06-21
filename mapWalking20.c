@@ -18,7 +18,7 @@ typedef struct {
     int revealed;
 } Trap;
 
-void printMap(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
+void printMap20(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
     int i, j;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
@@ -52,7 +52,7 @@ void printMap(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps
 
 
 
-void generateHiddenMap(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
+void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
     int i, j;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
@@ -88,13 +88,13 @@ void mazeGame20() {
 
     if (rand() % 2 == 0) {
         selectedMap = 1;
-        generateHiddenMap(map1, hiddenMap, playerX, playerY, NULL, 0);
+        generateHiddenMap20(map1, hiddenMap, playerX, playerY, NULL, 0);
     } else {
         selectedMap = 2;
-        generateHiddenMap(map2, hiddenMap, playerX, playerY, NULL, 0);
+        generateHiddenMap20(map2, hiddenMap, playerX, playerY, NULL, 0);
     }
 
-    printMap(hiddenMap, playerX, playerY, traps, trapCount);
+    printMap20(hiddenMap, playerX, playerY, traps, trapCount);
 
 
 
@@ -172,8 +172,8 @@ void mazeGame20() {
                     }
                 }
                 CLEAR_SCREEN();
-                generateHiddenMap(selectedMap == 1 ? map1 : map2, hiddenMap, playerX, playerY, traps, trapCount);
-                printMap(hiddenMap, playerX, playerY, traps, trapCount);
+                generateHiddenMap20(selectedMap == 1 ? map1 : map2, hiddenMap, playerX, playerY, traps, trapCount);
+                printMap20(hiddenMap, playerX, playerY, traps, trapCount);
                 continue;
             default:
                 printf("Direção inválida! Tente novamente.\n");
@@ -190,11 +190,11 @@ void mazeGame20() {
         CLEAR_SCREEN();
 
         if (selectedMap == 1) {
-            generateHiddenMap(map1, hiddenMap, playerX, playerY, traps, trapCount);
+            generateHiddenMap20(map1, hiddenMap, playerX, playerY, traps, trapCount);
         } else {
-            generateHiddenMap(map2, hiddenMap, playerX, playerY, traps, trapCount);
+            generateHiddenMap20(map2, hiddenMap, playerX, playerY, traps, trapCount);
         }
-        printMap(hiddenMap, playerX, playerY, traps, trapCount);
+        printMap20(hiddenMap, playerX, playerY, traps, trapCount);
     }
 }
 
