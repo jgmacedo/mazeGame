@@ -18,42 +18,29 @@ typedef struct {
     int revealed;
 } Trap;
 
+Trap traps[] = {
+    {2, 1, 0},
+    {7, 2, 0},
+    /* posições de traps no mapa (serve para ambos) */
+};
+
+int trapCount = sizeof(traps) / sizeof(traps[0]);  // Calculate the number of traps
+
 void printMap20(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
     int i, j;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
             if (i == playerY && j == playerX) {
                 printf("%c ", PLAYER_CHAR);
-            } else if (abs(i - playerY) <= 1 && abs(j - playerX) <= 1) {
-                int k;
-                int trapFound = 0;
-                for (k = 0; k < trapCount; k++) {
-                    if (traps[k].x == j && traps[k].y == i && traps[k].revealed) {
-                        printf("%c ", TRAP_CHAR);
-                        trapFound = 1;
-                        break;
-                    }
-                }
-                if (!trapFound && map[i][j] != WALL_CHAR) {
-                    printf("%c ", map[i][j]);
-                } else if (!trapFound && map[i][j] == WALL_CHAR) {
-                    printf("%c ", WALL_CHAR);
-                } else if (trapFound) {
-                    printf("%c ", UNKNOWN_AREA);
-                }
             } else {
-                printf("%c ", UNKNOWN_AREA);
+                printf("%c ", map[i][j]);
             }
         }
         printf("\n");
     }
 }
-
-
-
-
 void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
-    int i, j;
+    int i, j, k;
     for (i = 0; i < MAP_SIZE; i++) {
         for (j = 0; j < MAP_SIZE; j++) {
             if (abs(i - playerY) <= 1 && abs(j - playerX) <= 1) {
@@ -61,21 +48,15 @@ void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][
             } else {
                 hiddenMap[i][j] = UNKNOWN_AREA;
             }
-
-            int k;
             for (k = 0; k < trapCount; k++) {
-                if (traps[k].y == i && traps[k].x == j) {
-                    hiddenMap[i][j] = UNKNOWN_AREA;  // Oculta armadilhas no mapa
+                if (traps[k].y == i && traps[k].x == j && traps[k].revealed) {
+                    hiddenMap[i][j] = TRAP_CHAR;
                     break;
                 }
             }
         }
     }
 }
-
-
-
-
 void mazeGame20() {
     srand(time(NULL));
     int destreza = 10, inteligencia = 10;
@@ -84,7 +65,7 @@ void mazeGame20() {
     int playerY = 1;
     int selectedMap;
     Trap traps[MAX_TRAPS];
-    int trapCount = 0;
+    int trapCount = sizeof(traps) / sizeof(traps[0]);
 
     if (rand() % 2 == 0) {
         selectedMap = 1;
@@ -96,18 +77,15 @@ void mazeGame20() {
 
     printMap20(hiddenMap, playerX, playerY, traps, trapCount);
 
-
-
     while (1) {
         printf("Digite uma direção (W, A, S, D) ou 'T' para realizar um teste de percepção ou CTRL + C para sair: \n");
-        char input = le_tecla();
+        le_tecla();
 
         int newX = playerX;
         int newY = playerY;
         int trapChance;
 
-
-        switch (input) {
+        switch (le_tecla()) {
             case 'w':
             case 'W':
                 newY = playerY - 1;
@@ -126,58 +104,30 @@ void mazeGame20() {
                 break;
             case 't':
             case 'T':
-                if (selectedMap == 1) {
-                trapChance = (destreza + inteligencia) * 100 / 20;
+                trapChance = (destreza + inteligencia) * 100 / 12;
                 if (rand() % 100 < trapChance) {
                     printf("Percebeu uma armadilha!\n");
                     int k;
-                    int trapFound = 0;
                     for (k = 0; k < trapCount; k++) {
                         int trapX = traps[k].x;
                         int trapY = traps[k].y;
-                        if ((abs(trapX - playerX) == 1 && trapY == playerY) || (abs(trapY - playerY) == 1 && trapX == playerX)) {
+                        if (abs(trapX - playerX) <= 1 && abs(trapY - playerY) <= 1) {
                             traps[k].revealed = 1;
-                            trapFound = 1;
+                            /* Update the revealed map with the revealed trap */
+                            if (selectedMap == 1) {
+                                map1[trapY][trapX] = TRAP_CHAR;
+                            } else {
+                                map2[trapY][trapX] = TRAP_CHAR;
+                            }
                             break;
                         }
                     }
-                    if (!trapFound) {
-                        traps[trapCount].x = playerX;
-                        traps[trapCount].y = playerY;
-                        traps[trapCount].revealed = 1;
-                        trapCount++;
-                    }
-                }
-                } else {
-                    trapChance = (destreza + inteligencia) * 100 / 12;
-                    if (rand() % 100 < trapChance) {
-                        printf("Percebeu uma armadilha!\n");
-                        int k;
-                        int trapFound = 0;
-                        for (k = 0; k < trapCount; k++) {
-                            int trapX = traps[k].x;
-                            int trapY = traps[k].y;
-                            if ((abs(trapX - playerX) == 1 && trapY == playerY) || (abs(trapY - playerY) == 1 && trapX == playerX)) {
-                                traps[k].revealed = 1;
-                                trapFound = 1;
-                                break;
-                            }
-                        }
-                        if (!trapFound) {
-                            traps[trapCount].x = playerX;
-                            traps[trapCount].y = playerY;
-                            traps[trapCount].revealed = 1;
-                            trapCount++;
-                        }
-                    }
-                }
-                CLEAR_SCREEN();
-                generateHiddenMap20(selectedMap == 1 ? map1 : map2, hiddenMap, playerX, playerY, traps, trapCount);
-                printMap20(hiddenMap, playerX, playerY, traps, trapCount);
-                continue;
-            default:
-                printf("Direção inválida! Tente novamente.\n");
-                continue;
+        /* Update the hidden map with the revealed trap */
+        generateHiddenMap20(selectedMap == 1 ? map1 : map2, hiddenMap, playerX, playerY, traps, trapCount);
+    }
+    CLEAR_SCREEN();
+    printMap20(hiddenMap, playerX, playerY, traps, trapCount);
+    continue;
         }
 
         if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE &&
@@ -186,6 +136,16 @@ void mazeGame20() {
             playerX = newX;
             playerY = newY;
         }
+        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE &&
+        ((selectedMap == 1 && map1[newY][newX] == TRAP_CHAR) ||
+        (selectedMap == 2 && map2[newY][newX] == TRAP_CHAR))) {
+        /* Update the revealed map with the revealed trap */
+        if (selectedMap == 1) {
+            map1[newY][newX] = TRAP_REVEALED_CHAR;
+        } else {
+            map2[newY][newX] = TRAP_REVEALED_CHAR;
+        }
+}
 
         CLEAR_SCREEN();
 
@@ -198,3 +158,7 @@ void mazeGame20() {
     }
 }
 
+int main() {
+    mazeGame20();
+    return 0;
+}
