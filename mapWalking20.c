@@ -9,6 +9,7 @@
 #define PLAYER_CHAR 'P'
 #define WALL_CHAR '#'
 #define TRAP_CHAR 'T'
+#define TRAP_REVEALED_CHAR 'T'
 #define CLEAR_SCREEN() system("clear")
 #define MAX_TRAPS 100
 
@@ -18,13 +19,21 @@ typedef struct {
     int revealed;
 } Trap;
 
-Trap traps[] = {
+Trap traps[10] = {
     {2, 1, 0},
     {7, 2, 0},
-    /* posições de traps no mapa (serve para ambos) */
+    {3, 4, 0},
+    {6, 8, 0}, 
+    {1, 2, 0}, 
+    {4, 5, 0}, 
+    {7, 8, 0}, 
+    {10, 11, 0}, 
+    {13, 14, 0}, 
+    {16, 17, 0}
+
 };
 
-int trapCount = sizeof(traps) / sizeof(traps[0]);  // Calculate the number of traps
+int trapCount = 10;  /* quantidade de traps no mapa */
 
 void printMap20(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount) {
     int i, j;
@@ -154,7 +163,7 @@ void mazeGame20() {
         } else {
             generateHiddenMap20(map2, hiddenMap, playerX, playerY, traps, trapCount);
         }
-        printMap20(hiddenMap, playerX, playerY, traps, trapCount);
+            printMap20(hiddenMap, playerX, playerY, traps, trapCount);
     }
 }
 
