@@ -150,7 +150,7 @@ void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap trap
     }
 }
 
-void mazeGame20(struct Personagem personagem)
+void mazeGame30(struct Personagem personagem)
 {
     srand(time(NULL));
     char map[MAP_SIZE][MAP_SIZE]; /* mapa para ser usado */
