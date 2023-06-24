@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "map50.c"
+#include "map50.h"
 #include "funcoes_auxiliares.h"
 
 #define MAP_SIZE 50
@@ -102,6 +102,4 @@ void mazeGame50() {
         }
         printMap50(hiddenMap, playerX, playerY);
     }
-
-    return 0;
 }

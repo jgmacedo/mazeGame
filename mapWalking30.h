@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "map30.c"
+#include "map30.h"
 #include "funcoes_auxiliares.h"
 
 #define MAP_SIZE 30
