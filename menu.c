@@ -3,7 +3,7 @@
 
 /* imports */
 #include "novoPersonagem.c"
-#include "jogo.c"
+#include "jogo.h"
 
 void menu()
 {
