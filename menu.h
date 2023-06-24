@@ -16,6 +16,7 @@ void menu()
     int opcoesIniciais;
     int personagemCriado = 0;
     int sairDoJogo = 0;
+    struct boneco personagem;
 
     while (sairDoJogo == 0)
     {
@@ -33,9 +34,9 @@ void menu()
         switch (opcoesIniciais)
         {
         case 1:
+            novoPersonagem();
             personagemCriado = 1;
             system("clear");
-            novoPersonagem();
             break;
         case 2:
             if (personagemCriado == 1)

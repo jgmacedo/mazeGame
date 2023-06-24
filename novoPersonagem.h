@@ -9,7 +9,7 @@
 #include "mapWalking30.h"
 #include "mapWalking50.h"
 #endif
-struct Personagem
+struct boneco
 {
     int vida;
     int raca;
@@ -23,10 +23,10 @@ struct Personagem
     int constituicao;
 };
 
-void novoPersonagem()
+struct boneco novoPersonagem()
 {
     /* inicializaçao do personagem */
-    struct Personagem personagem;
+    struct boneco personagem;
     personagem.vida = 20;
     personagem.raca = 0;
     personagem.alinhamento = 0;
@@ -362,4 +362,6 @@ void novoPersonagem()
     printf("CONSTITUIÇÃO: %d\n", personagem.constituicao);
 
     printf("\nVocê tem %d pontos de vida para seguir sua jornada! Boa Sorte...\n\n", personagem.vida);
+    
+return personagem;
 }

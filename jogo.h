@@ -16,6 +16,7 @@
 
 void jogo()
 {
+    struct boneco personagem;
     int dificuldade;
 
     while (dificuldade != 1 || dificuldade != 2 || dificuldade != 3)

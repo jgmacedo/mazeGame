@@ -17,8 +17,6 @@
 #include "novoPersonagem.h"
 #endif
 
-
-
 #define MAP_SIZE20 20
 #define UNKNOWN_AREA '.'
 #define PLAYER_CHAR 'P'
