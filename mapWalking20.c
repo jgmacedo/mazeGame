@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "map20.c"
+#include "map20.h"
 #include "funcoes_auxiliares.h"
 
 #define MAP_SIZE 20
@@ -56,6 +56,7 @@ void printMap20(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap tra
         printf("\n");
     }
 }
+
 void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount)
 {
     int i, j, k;
@@ -73,7 +74,7 @@ void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][
             }
             for (k = 0; k < trapCount; k++)
             {
-                if (traps[k].y == i && traps[k].x == j && traps[k].revealed)    
+                if (traps[k].y == i && traps[k].x == j && traps[k].revealed)
                 {
                     hiddenMap[i][j] = TRAP_CHAR;
                     break;
@@ -82,6 +83,7 @@ void generateHiddenMap20(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][
         }
     }
 }
+
 void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap traps[], int trapCount, int trapCheckedMap[MAP_SIZE][MAP_SIZE])
 {
     int i, j, k;
@@ -91,60 +93,59 @@ void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap trap
     {
         for (j = playerX - 1; j <= playerX + 1; j++)
         {
-         /* Verifique se as coordenadas atuais estão dentro dos limites do mapa */
+            /* coordenadas do scan dentro do mapa? */
             if (i >= 0 && i < MAP_SIZE && j >= 0 && j < MAP_SIZE)
             {
-             /* Pule a posição do jogador */
+                /* não scanear jogador */
                 if (i == playerY && j == playerX)
                     continue;
                 position = map[i][j];
-                
-             /* Verifique se a posição corresponde a qualquer uma das posições das armadilhas */
+
+                /* Verifique se a posição corresponde a qualquer uma das posições das armadilhas */
                 for (k = 0; k < trapCount; k++)
                 {
-            if (!trapCheckedMap[i][j])
-            {                    
-                    if (traps[k].x == j && traps[k].y == i)/* Se houver trap */
+                    if (!trapCheckedMap[i][j])
                     {
-                        if(position != WALL_CHAR)/* se não houver parede */
+                        if (traps[k].x == j && traps[k].y == i) /* Se houver trap */
                         {
-                            map[i][j] = TRAP_CHAR;
+                            if (position != WALL_CHAR) /* se não houver parede */
+                            {
+                                map[i][j] = TRAP_CHAR;
+                            }
+                            traps[k].revealed = 1;
+                            trapCheckedMap[i][j] = 1;
+                            break;
                         }
-                    traps[k].revealed = 1;
-                    trapCheckedMap[i][j] = 1;
-                    break;
                     }
-                }
                 }
             }
         }
     }
 }
 
-
-
 void mazeGame20()
 {
     srand(time(NULL));
     int destreza = 5, inteligencia = 5;
+    char map[MAP_SIZE][MAP_SIZE]; /* mapa para ser usado */
     char hiddenMap[MAP_SIZE][MAP_SIZE];
     int playerX = 1;
     int playerY = 1;
     int selectedMap;
-    int trapCount = sizeof(traps) / sizeof(traps[0]);
-    int trapCheckedMap[MAP_SIZE][MAP_SIZE] = {0};
     int vida = 100;
     memset(trapCheckedMap, 0, sizeof(trapCheckedMap));
 
     if (rand() % 2 == 0)
     {
         selectedMap = 1;
-        generateHiddenMap20(map1, hiddenMap, playerX, playerY, NULL, 0);
+        memcpy(map, map1, sizeof(map1)); /* copiar mapa do arquivo para o jogo */
+        generateHiddenMap20(map, hiddenMap, playerX, playerY, NULL, 0);
     }
     else
     {
         selectedMap = 2;
-        generateHiddenMap20(map2, hiddenMap, playerX, playerY, NULL, 0);
+        memcpy(map, map2, sizeof(map2)); /* copiar mapa alternativo do arquivo para o jogo */
+        generateHiddenMap20(map, hiddenMap, playerX, playerY, NULL, 0);
     }
 
     printMap20(hiddenMap, playerX, playerY, traps, trapCount);
@@ -161,70 +162,47 @@ void mazeGame20()
 
         switch (le_tecla())
         {
-            case 'w':
-            case 'W':
-                newY = playerY - 1;
-                break;
-            case 'a':
-            case 'A':
-                newX = playerX - 1;
-                break;
-            case 's':
-            case 'S':
-                newY = playerY + 1;
-                break;
-            case 'd':
-            case 'D':
-                newX = playerX + 1;
-                break;
-            case 't':
-            case 'T':
-                trapChance = (destreza + inteligencia) * 100 / 12;
-                if (rand() % 100 > trapChance)
-                {
-                    trapCheck(playerX, playerY, map1, traps, trapCount, trapCheckedMap);
-                }
-                CLEAR_SCREEN();
-                printMap20(hiddenMap, playerX, playerY, traps, trapCount);
-                vida --;
-                break;
+        case 'w':
+        /* case 'W': */
+            newY = playerY - 1;
+            break;
+        case 'a':
+        /* case 'A': */
+            newX = playerX - 1;
+            break;
+        case 's':
+        /* case 'S': */
+            newY = playerY + 1;
+            break;
+        case 'd':
+        /* case 'D': */
+            newX = playerX + 1;
+            break;
+        case 't':
+        /* case 'T': */
+            trapChance = (destreza + inteligencia) * 100 / 20;
+            if (rand() % 100 > trapChance)
+            {
+                trapCheck(playerX, playerY, map, traps, trapCount, trapCheckedMap);
+            }
+            CLEAR_SCREEN();
+            printMap20(hiddenMap, playerX, playerY, traps, trapCount);
+            vida--;
+            break;
         }
 
         /* Movimento e condições */
-        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE &&
-            ((selectedMap == 1 && map1[newY][newX] != WALL_CHAR) ||
-             (selectedMap == 2 && map2[newY][newX] != WALL_CHAR)))
+        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE)
         {
-            playerX = newX;
-            playerY = newY;
-        }
-        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE &&
-            ((selectedMap == 1 && map1[newY][newX] == TRAP_CHAR) ||
-             (selectedMap == 2 && map2[newY][newX] == TRAP_CHAR)))
-        {
-            /* colocar a trap */
-            if (selectedMap == 1)
+            if (map[newY][newX] != WALL_CHAR)
             {
-                map1[newY][newX] = TRAP_REVEALED_CHAR;
-            }
-            else
-            {
-                map2[newY][newX] = TRAP_REVEALED_CHAR;
+                playerX = newX;
+                playerY = newY;
             }
         }
-
         CLEAR_SCREEN();
-
-        if (selectedMap == 1)
-        {
-            generateHiddenMap20(map1, hiddenMap, playerX, playerY, traps, trapCount);
-        }
-        else
-        {
-            generateHiddenMap20(map2, hiddenMap, playerX, playerY, traps, trapCount);
-        }
+        generateHiddenMap20(map, hiddenMap, playerX, playerY, traps, trapCount);
         printMap20(hiddenMap, playerX, playerY, traps, trapCount);
-        
     }
 }
 
