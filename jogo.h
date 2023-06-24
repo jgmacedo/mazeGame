@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 /*imports*/
-#include "mapWalking20.c"
-#include "mapWalking30.c"
-#include "mapWalking50.c"
+#include "mapWalking20.h"
+#include "mapWalking30.h"
+#include "mapWalking50.h"
 
 void jogo()
 {
