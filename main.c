@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "menu.c"
+#include "menu.h"
 
 int main()
 {

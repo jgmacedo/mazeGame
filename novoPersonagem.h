@@ -90,7 +90,7 @@ void novoPersonagem()
             personagem.alinhamento = 3;
             printf("Muito bom bonzinho, vá salvar o mundo herói...!\n");
             break;
-        /* fazer usuario voltar caso insira alguma das opcoes diferentes*/
+        /* fazer usuario voltar caso insira alguma das opcoes diferentes */
         default:
             printf("\n* Opção Inválida! Tente Novamente *\n");
             continue;
@@ -98,7 +98,7 @@ void novoPersonagem()
     }
 
     /* PROFISSAO DO PERSONAGEM:
-     if e else para fazer a restricao se caso o personagem.alinhamento do personagem
+    if e else para fazer a restricao se caso o personagem.alinhamento do personagem
     for Bom, ele nao podera escolher a classe Ladino. */
     if (personagem.alinhamento != 3)
     {

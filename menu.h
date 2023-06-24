@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /* imports */
-#include "novoPersonagem.c"
+#include "novoPersonagem.h"
 #include "jogo.h"
 
 void menu()
