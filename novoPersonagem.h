@@ -3,7 +3,12 @@
 #include <stdlib.h>
 
 #define MAX_HISTORIA 401
-
+#ifndef MAP_WALKING
+#define MAP_WALKING
+#include "mapWalking20.h"
+#include "mapWalking30.h"
+#include "mapWalking50.h"
+#endif
 struct Personagem
 {
     int vida;

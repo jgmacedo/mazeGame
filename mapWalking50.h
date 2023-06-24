@@ -4,9 +4,13 @@
 #include <string.h>
 #include "map50.h"
 #include "funcoes_auxiliares.h"
+#ifndef NOVOPERSONAGEM_H
+#define NOVOPERSONAGEM_H
+#include "novoPersonagem.h"
+#endif
 
 
-#define MAP_SIZE 50
+#define MAP_SIZE50 50
 #define UNKNOWN_AREA '.'
 #define PLAYER_CHAR 'P'
 #define WALL_CHAR '#'
@@ -19,9 +23,9 @@ typedef struct
     int x;
     int y;
     int revealed;
-} Trap;
+} Trap50;
 
-Trap traps[35] = {
+Trap50 traps50[35] = {
 {1, 9, 0},
 {2, 39, 0},
 {4, 10, 0},
@@ -58,28 +62,16 @@ Trap traps[35] = {
 {44, 21, 0},
 {47, 27, 0}
 };
-struct Personagem
-{
-    int vida;
-    int raca;
-    int alinhamento;
-    int profissao;
-    char historiaPrevia[401];
-    int porte;
-    int forca;
-    int destreza;
-    int inteligencia;
-    int constituicao;
-};
-int trapCount = 35; /* quantidade de traps no mapa */
-int trapCheckedMap[MAP_SIZE][MAP_SIZE];
 
-void printMap50(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount)
+int trapCount = 35; /* quantidade de traps50 no mapa */
+int trapCheckedMap[MAP_SIZE50][MAP_SIZE50];
+
+void printMap50(char map[MAP_SIZE50][MAP_SIZE50], int playerX, int playerY, Trap50 traps50[], int trapCount)
 {
     int i, j;
-    for (i = 0; i < MAP_SIZE; i++)
+    for (i = 0; i < MAP_SIZE50; i++)
     {
-        for (j = 0; j < MAP_SIZE; j++)
+        for (j = 0; j < MAP_SIZE50; j++)
         {
             if (i == playerY && j == playerX)
             {
@@ -94,12 +86,12 @@ void printMap50(char map[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap tra
     }
 }
 
-void generateHiddenMap50(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][MAP_SIZE], int playerX, int playerY, Trap traps[], int trapCount)
+void generateHiddenMap50(char map[MAP_SIZE50][MAP_SIZE50], char hiddenMap[MAP_SIZE50][MAP_SIZE50], int playerX, int playerY, Trap50 traps50[], int trapCount)
 {
     int i, j, k;
-    for (i = 0; i < MAP_SIZE; i++)
+    for (i = 0; i < MAP_SIZE50; i++)
     {
-        for (j = 0; j < MAP_SIZE; j++)
+        for (j = 0; j < MAP_SIZE50; j++)
         {
             if (abs(i - playerY) <= 2 && abs(j - playerX) <= 2)/* campo de visão: raio 2 */
             {
@@ -111,7 +103,7 @@ void generateHiddenMap50(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][
             }
             for (k = 0; k < trapCount; k++)
             {
-                if (traps[k].y == i && traps[k].x == j && traps[k].revealed)
+                if (traps50[k].y == i && traps50[k].x == j && traps50[k].revealed)
                 {
                     hiddenMap[i][j] = TRAP_CHAR;
                     break;
@@ -121,7 +113,7 @@ void generateHiddenMap50(char map[MAP_SIZE][MAP_SIZE], char hiddenMap[MAP_SIZE][
     }
 }
 
-void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap traps[], int trapCount, int trapCheckedMap[MAP_SIZE][MAP_SIZE])
+void trapCheck50(int playerX, int playerY, char map[MAP_SIZE50][MAP_SIZE50], Trap50 traps50[], int trapCount, int trapCheckedMap[MAP_SIZE50][MAP_SIZE50])
 {
     int i, j, k;
     char position;
@@ -131,7 +123,7 @@ void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap trap
         for (j = playerX - 2; j <= playerX + 2; j++)
         {
             /* scan apenas dentro do mapa para não ter problemas com memória */
-            if (i >= 0 && i < MAP_SIZE && j >= 0 && j < MAP_SIZE)
+            if (i >= 0 && i < MAP_SIZE50 && j >= 0 && j < MAP_SIZE50)
             {
                 /* não scanear jogador */
                 if (i == playerY && j == playerX)
@@ -143,13 +135,13 @@ void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap trap
                 {
                     if (!trapCheckedMap[i][j])
                     {
-                        if (traps[k].x == j && traps[k].y == i) /* Se houver trap */
+                        if (traps50[k].x == j && traps50[k].y == i) /* Se houver trap */
                         {
                             if (position != WALL_CHAR) /* se não houver parede */
                             {
                                 map[i][j] = TRAP_CHAR;
                             }
-                            traps[k].revealed = 1;
+                            traps50[k].revealed = 1;
                             trapCheckedMap[i][j] = 1;
                             break;
                         }
@@ -160,27 +152,17 @@ void trapCheck(int playerX, int playerY, char map[MAP_SIZE][MAP_SIZE], Trap trap
     }
 }
 
-void mazeGame50(struct Personagem personagem)
+void mazeGame50()
 {
     srand(time(NULL));
-    char map[MAP_SIZE][MAP_SIZE]; /* mapa para ser usado */
-    char hiddenMap[MAP_SIZE][MAP_SIZE];
+    char map[MAP_SIZE50][MAP_SIZE50]; /* mapa para ser usado */
+    char hiddenMap[MAP_SIZE50][MAP_SIZE50];
     int playerX = 1;
     int playerY = 1;
     int selectedMap;
     int i,k;
     memset(trapCheckedMap, 0, sizeof(trapCheckedMap));
     /* apenas para teste: APAGAR */
-    
-    personagem.raca = 1;
-    personagem.alinhamento = 1;
-    personagem.profissao = 1;
-    personagem.porte = 1;
-    personagem.forca = 1;
-    personagem.destreza = 1;
-    personagem.inteligencia = 1;
-    personagem.constituicao = 1;
-    personagem.vida = personagem.constituicao * 20; 
 
     if (rand() % 2 == 0)
     {
@@ -195,7 +177,7 @@ void mazeGame50(struct Personagem personagem)
         generateHiddenMap50(map, hiddenMap, playerX, playerY, NULL, 0);
     }
 
-    printMap50(hiddenMap, playerX, playerY, traps, trapCount);
+    printMap50(hiddenMap, playerX, playerY, traps50, trapCount);
 
     while (1)
     {
@@ -240,16 +222,16 @@ void mazeGame50(struct Personagem personagem)
 
             if (rand() % 100 < trapChance)
             {
-                trapCheck(playerX, playerY, map, traps, trapCount, trapCheckedMap);
+                trapCheck50(playerX, playerY, map, traps50, trapCount, trapCheckedMap);
             }
             CLEAR_SCREEN();
-            printMap50(hiddenMap, playerX, playerY, traps, trapCount);
+            printMap50(hiddenMap, playerX, playerY, traps50, trapCount);
             personagem.vida--;
             break;
         }
 
         /* Movimento e condições de fim de labirinto. */
-        if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE)
+        if (newX >= 0 && newX < MAP_SIZE50 && newY >= 0 && newY < MAP_SIZE50)
         {
             if (map[newY][newX] == 'X') /* CHEGOU NO BOSS */
             {
@@ -267,19 +249,19 @@ void mazeGame50(struct Personagem personagem)
         /* pisou na trap? */
         for (i = 0; i < trapCount; i++)
         {
-            if (traps[i].x == playerX && traps[i].y == playerY)
+            if (traps50[i].x == playerX && traps50[i].y == playerY)
             {
                 /* trap acionada */
                 personagem.vida -= 5; /* perder vida */
                 printf("Você pisou em uma armadilha!");
-                traps[i].revealed = 1;  /* revelar trap */
+                traps50[i].revealed = 1;  /* revelar trap */
                 map[playerX][playerY] = TRAP_CHAR;
 
                 break; /* verificar até achar. */
             }
         }
         CLEAR_SCREEN();
-        generateHiddenMap50(map, hiddenMap, playerX, playerY, traps, trapCount);
-        printMap50(hiddenMap, playerX, playerY, traps, trapCount);
+        generateHiddenMap50(map, hiddenMap, playerX, playerY, traps50, trapCount);
+        printMap50(hiddenMap, playerX, playerY, traps50, trapCount);
     }
 }

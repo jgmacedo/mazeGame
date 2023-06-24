@@ -3,9 +3,16 @@
 #include <stdlib.h>
 
 /*imports*/
+#ifndef MAP_WALKING
+#define MAP_WALKING
 #include "mapWalking20.h"
 #include "mapWalking30.h"
 #include "mapWalking50.h"
+#endif
+#ifndef NOVO_H
+#define NOVO_H
+#include "novoPersonagem.h"
+#endif
 
 void jogo()
 {

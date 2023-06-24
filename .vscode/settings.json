@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "limits": "c"
+        "limits": "c",
+        "funcoes_auxiliares.h": "c",
+        "novopersonagem.h": "c",
+        "mapwalking50.h": "c",
+        "mapwalking20.h": "c",
+        "jogo.h": "c"
     }
 }

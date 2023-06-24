@@ -2,8 +2,14 @@
 #include <stdlib.h>
 
 /* imports */
-#include "novoPersonagem.h"
+
 #include "jogo.h"
+#ifndef MAP_WALKING
+#define MAP_WALKING
+#include "mapWalking20.h"
+#include "mapWalking30.h"
+#include "mapWalking50.h"
+#endif
 
 void menu()
 {
