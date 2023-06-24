@@ -222,6 +222,9 @@ void novoPersonagem()
             }
         }
     }
+    printf("\nAgora para finalizar, conte-nos uma história prévia de como "
+           "seu personagem viveu até esse momento. [até 400 caracteres] : ");
+    scanf(" %[^\n]", personagem.historiaPrevia);
 
     printf("\nMuito Bem! Agora vamos definir seus atributos.\n");
     printf("- Seus atributos somados têm que dar no máximo 10 pontos\n");
