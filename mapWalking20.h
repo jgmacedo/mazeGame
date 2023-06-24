@@ -237,12 +237,19 @@ void mazeGame20(struct Personagem personagem)
         /* Movimento e condições */
         if (newX >= 0 && newX < MAP_SIZE && newY >= 0 && newY < MAP_SIZE)
         {
+            if (map[newY][newX] == 'X') /* CHEGOU NO BOSS */
+            {
+                CLEAR_SCREEN();
+                printf("\n\nVOCÊ CHEGOU NO FIM. ENFRENTE SEU DESTINO:\n");
+                /* boss(); */
+            }
             if (map[newY][newX] != WALL_CHAR)
             {
                 playerX = newX;
                 playerY = newY;
             }
         }
+
         /* pisou na trap? */
         for (i = 0; i < trapCount; i++)
         {
