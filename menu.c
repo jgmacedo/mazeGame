@@ -3,8 +3,9 @@
 
 /* imports */
 #include "novoPersonagem.c"
+#include "jogo.c"
 
-int main()
+void menu()
 {
     int opcoesIniciais;
     int personagemCriado = 0;
@@ -33,7 +34,8 @@ int main()
         case 2:
             if (personagemCriado == 1)
             {
-                printf("chamar a funcao jogo\n");
+                system("clear");
+                jogo();
             }
             else
             {
