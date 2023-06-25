@@ -98,10 +98,10 @@ void charadas()
         if (charadaSorteada == 1)
         {
 
-            printf("O que é, o que é? Quem faz, não usa. Quem usa, não vê. Quem vê, não quer usar.\n");
-            printf("1. Bengala\n");
-            printf("2. Óculos de Sol\n");
-            printf("3. Caixão\n");
+            printf("O que é o que é? Dá muitas voltas e não sai do lugar.\n");
+            printf("1. Ventilador\n");
+            printf("2. Parafuso\n");
+            printf("3. Relógio\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 3)
@@ -123,10 +123,10 @@ void charadas()
         }
         if (charadaSorteada == 2)
         {
-            printf("O que é que todos têm, alguns perdem, mas ninguém pode dar?\n");
-            printf("1. Passado\n");
-            printf("2. Sombra\n");
-            printf("3. A vida\n");
+            printf("O que é o que é? Não se come, mas é bom para se comer.\n");
+            printf("1. Talher\n");
+            printf("2. Receita\n");
+            printf("3. Tempero\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 1)
@@ -148,10 +148,10 @@ void charadas()
         }
         if (charadaSorteada == 3)
         {
-            printf("O que é que sobe e desce sem se mover?\n");
-            printf("1. O Sol\n");
-            printf("2. Temperatura\n");
-            printf("3. Elevador\n");
+            printf("O que é, o que é? Nunca volta, embora nunca tenha ido.\n");
+            printf("1. O Futuro\n");
+            printf("2. O Passado\n");
+            printf("3. O Presente\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 2)
@@ -173,10 +173,10 @@ void charadas()
         }
         if (charadaSorteada == 4)
         {
-            printf("O que é que todos usam, mas ninguém vê?\n");
-            printf("1. Óculos\n");
-            printf("2. O nome\n");
-            printf("3. O cérebro\n");
+            printf("O que é, o que é? Fica no início da rua, no fim do mar e no meio da cara.\n");
+            printf("1. Sinal de trânsito\n");
+            printf("2. Barco\n");
+            printf("3. Letra 'r'\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 3)
@@ -198,10 +198,10 @@ void charadas()
         }
         if (charadaSorteada == 5)
         {
-            printf("Diga o que sou e eu desapareço. O que sou eu?\n");
-            printf("1. Segredo\n");
-            printf("2. Silêncio\n");
-            printf("3. Eco\n");
+            printf("O que é, o que é? Pode passar diante do sol sem fazer sombra.\n");
+            printf("1. Raio\n");
+            printf("2. Vento\n");
+            printf("3. Luz\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 2)
@@ -223,10 +223,10 @@ void charadas()
         }
         if (charadaSorteada == 6)
         {
-            printf("O que é, o que é? Fica cheio durante o dia e vazio durante a noite.\n");
-            printf("1. O sapato\n");
-            printf("2. A rua\n");
-            printf("3. A escola\n");
+            printf("O que é, o que é? Quanto maior menos se vê.\n");
+            printf("1. Escuridão\n");
+            printf("2. Tempo\n");
+            printf("3. Mistério\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 1)
@@ -248,10 +248,10 @@ void charadas()
         }
         if (charadaSorteada == 7)
         {
-            printf(" O que é, o que é? Vários pontinhos amarelos na parede.\n");
-            printf("1. Reflexo\n");
-            printf("2. Fandangos Alpinistas\n");
-            printf("3. Sujeira\n");
+            printf("O que é que é? Tem que ser lambido para enfiar no buraco mais facilmente?\n");
+            printf("1. Envelope\n");
+            printf("2. Linha de Costura\n");
+            printf("3. Selo\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 2)
@@ -273,10 +273,10 @@ void charadas()
         }
         if (charadaSorteada == 8)
         {
-            printf("O que é, o que é? Tem no meio do ovo.\n");
-            printf("1. Gema\n");
-            printf("2. Clara\n");
-            printf("3. A letra 'V'\n");
+            printf("O que é, o que é: Quanto mais se tira, mais se aumenta?\n");
+            printf("1. Silencio\n");
+            printf("2. Divida\n");
+            printf("3. Buraco\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 3)
@@ -298,10 +298,10 @@ void charadas()
         }
         if (charadaSorteada == 9)
         {
-            printf("Eu nunca fui, mas sempre serei. Ninguém nunca me viu, e nunca verão. Ainda assim, sou a esperança de todos. Quem sou eu?\n");
-            printf("1. Sonhos\n");
-            printf("2. Futuro\n");
-            printf("3. Eternidade\n");
+            printf(" O que é, o que é: Atravessa o rio, mas nunca se molha?\n");
+            printf("1. Reflexo\n");
+            printf("2. Ponte\n");
+            printf("3. Barco\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 2)
@@ -323,10 +323,10 @@ void charadas()
         }
         if (charadaSorteada == 10)
         {
-            printf("O que é o que é? Voa sem ter asas e chora sem ter olhos.\n");
-            printf("1. O vento\n");
-            printf("2. O pensamento\n");
-            printf("3. A Nuvem\n");
+            printf("O que é, o que é: Quando a gente fica em pé, ele fica deitado, e quando a gente deita, ele fica em pé?\n");
+            printf("1. Sombra\n");
+            printf("2. Espelho\n");
+            printf("3. Os pés\n");
             printf("-> ");
             scanf("%d", &respostaCharada);
             if (respostaCharada == 3)
