@@ -361,4 +361,13 @@ void boss()
     printf("Pensou que a disputa tinha terminado? Muahahah!\n");
     printf("Percebeu que não seria tão simples assim, não é mesmo? Agora, desafio você a resolver três das charadas mais difíceis! Desejo-lhe boa sorte.\n");
     charadas();
+
+    system("clear");
+    printf("Após inúmeras provações, perigos superados e enigmas desvendados, você emerge vitorioso do intricado labirinto de Eldoria. Cada passo dado e cada desafio enfrentado serviram como testes de coragem, inteligência e perseverança.\n");
+    printf("Ao alcançar a saída, uma luz brilhante ilumina seu caminho, dissipando as sombras do labirinto. As portas se abrem, revelando um mundo novo e radiante. As vozes ancestrais ecoam em seus ouvidos, reconhecendo você como aquele que restaurou o equilíbrio e desvendou os segredos há muito perdidos.\n");
+    printf("Agora, a jornada épica chega ao seu fim, mas sua lenda transcenderá as fronteiras de FAVELA DOS PITS\n");
+    printf("Você se tornou aquele que triunfou sobre o labirinto enigmático e provou ser digno do título de campeão.\n");
+    printf("Parabéns por completar essa jornada extraordinária! Que sua lenda permaneça viva e brilhante por toda a eternidade!\n");
+    printf("\nFim do Jogo.\n");
+    exit(0);
 }

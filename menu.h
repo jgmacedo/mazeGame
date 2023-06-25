@@ -34,9 +34,9 @@ void menu()
         switch (opcoesIniciais)
         {
         case 1:
+            printf("Então vamos criar seu personagem para esta jornada íncrivel!\n");
             novoPersonagem();
             personagemCriado = 1;
-            system("clear");
             break;
         case 2:
             if (personagemCriado == 1)
