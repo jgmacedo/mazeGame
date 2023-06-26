@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <string.h>
-#include "novoPersonagem.h"
-#include "menu.h"
-#ifndef MAP_WALKING
-#define MAP_WALKING
+
+/*imports*/
+#include "map20.h"
+#include "map30.h"
+#include "map50.h"
+#include "boss.h"
+#include "funcoes_auxiliares.h"
+#include "jogo.h"
 #include "mapWalking20.h"
 #include "mapWalking30.h"
 #include "mapWalking50.h"
-#endif
+#include "menu.h"
+#include "novoPersonagem.h"
 
 int main()
 {
