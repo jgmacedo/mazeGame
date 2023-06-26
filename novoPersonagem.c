@@ -342,6 +342,4 @@ void novoPersonagem()
     printf("CONSTITUIÇÃO: %d\n", personagem.constituicao);
 
     printf("\nVocê tem %d pontos de vida para seguir sua jornada! Boa Sorte...\n\n", personagem.vida);
-
-    return personagem;
 }
