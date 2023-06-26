@@ -151,13 +151,13 @@ void mazeGame50()
     if (rand() % 2 == 0)
     {
         selectedMap = 1;
-        memcpy(map, map1, sizeof(map1)); /* copiar mapa do arquivo para o jogo */
+        memcpy(map, map5, sizeof(map5)); /* copiar mapa do arquivo para o jogo */
         generateHiddenMap50(map, hiddenMap, playerX, playerY, NULL, 0);
     }
     else
     {
         selectedMap = 2;
-        memcpy(map, map2, sizeof(map2)); /* copiar mapa alternativo do arquivo para o jogo */
+        memcpy(map, map6, sizeof(map6)); /* copiar mapa alternativo do arquivo para o jogo */
         generateHiddenMap50(map, hiddenMap, playerX, playerY, NULL, 0);
     }
 
