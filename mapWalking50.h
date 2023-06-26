@@ -237,7 +237,7 @@ void mazeGame50()
             {
                 CLEAR_SCREEN();
                 printf("\n\nVOCÊ CHEGOU NO FIM. ENFRENTE SEU DESTINO:\n");
-                /* boss(); */
+                boss();
             }
             if (map[newY][newX] != WALL_CHAR)
             {

@@ -13,6 +13,7 @@
 #define NOVO_H
 #include "novoPersonagem.h"
 #endif
+#include "boss.h"
 
 void jogo()
 {

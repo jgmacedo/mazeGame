@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+
+
 void jokenpo()
 {
     srand(time(NULL));
