@@ -2,9 +2,7 @@
 #include <string.h>
 
 /*imports*/
-#include "map20.h"
-#include "map30.h"
-#include "map50.h"
+
 #include "boss.h"
 #include "funcoes_auxiliares.h"
 #include "jogo.h"

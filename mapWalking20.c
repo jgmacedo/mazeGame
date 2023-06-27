@@ -33,7 +33,7 @@ Trap traps[20] = {
     {18, 19, 0}
 
 };
-
+extern struct boneco personagem;
 int trapCount20 = 20; /* quantidade de traps no mapa */
 int trapCheck20edMap[MAP_SIZE20][MAP_SIZE20];
 
