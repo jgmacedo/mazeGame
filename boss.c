@@ -5,7 +5,7 @@
 /*imports*/
 #include "novoPersonagem.h"
 #include "boss.h"
-
+extern struct boneco personagem;
 void jokenpo()
 {
     srand(time(NULL));

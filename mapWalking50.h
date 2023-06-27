@@ -1,6 +1,6 @@
 #ifndef MAPWALKING50_H
 #define MAPWALKING50_H
-#endif
+
 
 #define MAP_SIZE50 50
 #define UNKNOWN_AREA '.'
@@ -26,3 +26,4 @@ void generateHiddenMap50(char map[MAP_SIZE50][MAP_SIZE50], char hiddenMap[MAP_SI
 void trapCheck50(int playerX, int playerY, char map[MAP_SIZE50][MAP_SIZE50], Trap50 traps50[], int trapCount, int trapCheckedMap[MAP_SIZE50][MAP_SIZE50]);
 
 void mazeGame50();
+#endif

@@ -1,6 +1,6 @@
 #ifndef NOVOPERSONAGEM_H
 #define NOVOPERSONAGEM_H
-#endif
+
 
 #define MAX_HISTORIA 401
 
@@ -18,6 +18,7 @@ struct boneco
     int constituicao;
 };
 
-extern struct boneco personagem;
+struct boneco personagem;
 
 void novoPersonagem();
+#endif

@@ -1,6 +1,6 @@
 #ifndef MAPWALKING20_H
 #define MAPWALKING20_H
-#endif
+
 
 #define MAP_SIZE20 20
 #define UNKNOWN_AREA '.'
@@ -26,3 +26,4 @@ void generateHiddenMap20(char map[MAP_SIZE20][MAP_SIZE20], char hiddenMap[MAP_SI
 void trapCheck20(int playerX, int playerY, char map[MAP_SIZE20][MAP_SIZE20], Trap traps[], int trapCount20, int trapCheck20edMap[MAP_SIZE20][MAP_SIZE20]);
 
 void mazeGame20();
+#endif
