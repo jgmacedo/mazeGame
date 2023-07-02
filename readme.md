@@ -1,1 +1,1 @@
-para rodar: gcc -c main.c
+para rodar: ./a.out
